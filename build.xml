@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<project name="lucene-stanford-lemmatizer" default="compile" basedir=".">
+
+  <property name="src" value="src" />
+  <property name="build" value="class" />
+
+  <target name="init">
+    <mkdir dir="${build}" />
+  </target>
+
+  <target name="compile" depends="init">
+    <javac srcdir="${src}" destdir="${build}" />
+  </target>
+
+  <target name="jar" depends="compile" description="Generate jar file">
+    <jar jarfile="lucene-stanford-lemmatizer.jar" basedir="${build}" />
+  </target>
+
+</project>

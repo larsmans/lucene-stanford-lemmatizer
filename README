@@ -1,0 +1,17 @@
+This is a pair of Java classes that add lemmatizing capabilities for English
+to the Lucene search engine library.
+
+To build, the following packages are required:
+* Lucene 3.x, http://lucene.apache.org/java/
+* Stanford POS Tagger, http://nlp.stanford.edu/software/tagger.shtml
+* Guava, http://code.google.com/p/guava-libraries/
+
+There's no build script yet. To build, set your CLASSPATH, then issue:
+    javac src/nl/rug/eco/*.java
+    jar cf lucene-stanford-lemmatizer.jar nl
+
+To use this package inside a Lucene-based search engine, construct an
+EnglishLemmaAnalyzer instead of a StandardAnalyzer (or whatever you normally
+use). Pass the filename of a Stanford POS Tagger model file to the
+constructor; model files are usually in the models/ directory in the
+Stanford POS Tagger source code directory.

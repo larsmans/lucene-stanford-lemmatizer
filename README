@@ -4,11 +4,11 @@ to the Lucene search engine library.
 To build, the following packages are required:
 * Lucene 3.x, http://lucene.apache.org/java/
 * Stanford POS Tagger, http://nlp.stanford.edu/software/tagger.shtml
+* Ant, http://ant.apache.org/
 * Guava, http://code.google.com/p/guava-libraries/
 
-There's no build script yet. To build, set your CLASSPATH, then issue:
-    javac src/nl/rug/eco/*.java
-    jar cf lucene-stanford-lemmatizer.jar nl
+To build, set your CLASSPATH to include all the relevant libraries, then
+issue "ant jar".
 
 To use this package inside a Lucene-based search engine, construct an
 EnglishLemmaAnalyzer instead of a StandardAnalyzer (or whatever you normally

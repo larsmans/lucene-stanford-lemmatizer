@@ -1,5 +1,10 @@
+lucene-stanford-lemmatizer
+==========================
+
 This is a pair of Java classes that add lemmatizing capabilities for English
-to the Lucene search engine library.
+to the Lucene search engine library. Lemmatizing is similar to stemming,
+except smarter: it takes into account the context of a word to determine the
+correct lemma/stem.
 
 To build, the following packages are required:
 * Lucene 3.x, http://lucene.apache.org/java/

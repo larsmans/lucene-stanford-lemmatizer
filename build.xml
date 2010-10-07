@@ -1,19 +1,33 @@
 <?xml version="1.0"?>
 <project name="lucene-stanford-lemmatizer" default="compile" basedir=".">
 
-  <property name="src" value="src" />
-  <property name="build" value="class" />
+  <property name="srcdir" value="src" />
+  <property name="builddir" value="class" />
+  <property name="docdir" value="javadoc" />
 
   <target name="init">
-    <mkdir dir="${build}" />
+    <mkdir dir="${builddir}" />
   </target>
 
   <target name="compile" depends="init">
-    <javac srcdir="${src}" destdir="${build}" />
+    <javac srcdir="${srcdir}" destdir="${builddir}" />
   </target>
 
   <target name="jar" depends="compile" description="Generate jar file">
-    <jar jarfile="lucene-stanford-lemmatizer.jar" basedir="${build}" />
+    <jar jarfile="lucene-stanford-lemmatizer.jar" basedir="${builddir}" />
+  </target>
+
+  <target name="javadoc" description="Generate HTML API documentation">
+    <javadoc destdir="${docdir}" author="true" version="true"
+             windowtitle="lucene-stanford-lemmatizer API">
+      <fileset dir="${srcdir}">
+        <include name="**/*.java" />
+      </fileset>
+
+      <link href="http://download.oracle.com/javase/6/docs/api/" />
+      <link href="http://lucene.apache.org/java/3_0_2/api/all/" />
+      <link href="http://nlp.stanford.edu/nlp/javadoc/javanlp/" />
+    </javadoc>
   </target>
 
 </project>

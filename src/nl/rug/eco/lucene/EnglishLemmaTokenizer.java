@@ -34,7 +34,7 @@ import org.apache.lucene.analysis.tokenattributes.TermAttribute;
  * the Stanford POS tagger.
  *
  * @author  Lars Buitinck
- * @version 2010.1006
+ * @version 2010.1008
  */
 public class EnglishLemmaTokenizer extends TokenStream {
     private Iterator<TaggedWord> tagged;

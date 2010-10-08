@@ -10,6 +10,7 @@ Lemmatizing is similar to stemming, except smarter: it takes into account the
 context of a word to determine the correct lemma/stem.
 
 To build, the following packages are required:
+
 * [Lucene 3.x](http://lucene.apache.org/java/)
 * [Stanford POS Tagger](http://nlp.stanford.edu/software/tagger.shtml)
 * [Ant](http://ant.apache.org/)

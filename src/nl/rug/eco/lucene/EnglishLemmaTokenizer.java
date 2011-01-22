@@ -1,6 +1,6 @@
 /*
  * Lemmatizing library for Lucene
- * Copyright (C) 2010 Lars Buitinck
+ * Copyright (c) 2010-2011 Lars Buitinck
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,6 +20,7 @@ package nl.rug.eco.lucene;
 
 import java.io.*;
 import java.util.*;
+import java.util.regex.*;
 import com.google.common.collect.Iterables;
 import edu.stanford.nlp.ling.*;
 import edu.stanford.nlp.process.Morphology;
@@ -34,7 +35,7 @@ import org.apache.lucene.analysis.tokenattributes.TermAttribute;
  * the Stanford POS tagger.
  *
  * @author  Lars Buitinck
- * @version 2010.1008
+ * @version 2011.0122
  */
 public class EnglishLemmaTokenizer extends TokenStream {
     private Iterator<TaggedWord> tagged;
@@ -81,16 +82,38 @@ public class EnglishLemmaTokenizer extends TokenStream {
             String tag  = currentWord.tag();
             String form = currentWord.word();
             termAtt.setTermBuffer(Morphology.stemStatic(form, tag).word());
-        } else if (!tagged.hasNext()) {
-            return false;
         } else {
-            // Emit inflected form
-            posIncr.setPositionIncrement(0);    // next in same position
-            currentWord = tagged.next();
+            // Emit inflected form, if not filtered out.
+
+            // 0 because the lemma will come in the same position
+            int increment = 0;
+            for (;;) {
+                if (!tagged.hasNext())
+                    return false;
+                currentWord = tagged.next();
+                if (!unwantedPOS(currentWord.tag()))
+                    break;
+                increment++;
+            }
+
+            posIncr.setPositionIncrement(increment);
             termAtt.setTermBuffer(currentWord.word());
         }
 
         lemmaNext = !lemmaNext;
         return true;
+    }
+
+    private static final Pattern unwantedPosRE = Pattern.compile(
+      "^(CC|DT|[LR]RB|MD|POS|PRP|UH|WDT|WP|WP\\$|WRB|\\$|\\#|\\.|\\,|:)$"
+    );
+
+    /**
+     * Determines if words with a given POS tag should be omitted from the
+     * index. Defaults to filtering out punctuation and function words
+     * (pronouns, prepositions, "the", "a", etc.).
+     */
+    protected boolean unwantedPOS(String tag) {
+        return unwantedPosRE.matcher(tag).matches();
     }
 }

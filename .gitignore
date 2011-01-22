@@ -1,0 +1,7 @@
+class/
+javadoc/
+*.jar
+
+# Vim temporaries
+*.swp
+*.swo

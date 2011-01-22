@@ -112,6 +112,8 @@ public class EnglishLemmaTokenizer extends TokenStream {
      * Determines if words with a given POS tag should be omitted from the
      * index. Defaults to filtering out punctuation and function words
      * (pronouns, prepositions, "the", "a", etc.).
+     *
+     * @see <a href="http://www.ims.uni-stuttgart.de/projekte/CorpusWorkbench/CQP-HTMLDemo/PennTreebankTS.html">The Penn Treebank tag set</a> used by Stanford NLP
      */
     protected boolean unwantedPOS(String tag) {
         return unwantedPosRE.matcher(tag).matches();

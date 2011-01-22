@@ -1,26 +1,41 @@
 lucene-stanford-lemmatizer
 ==========================
 
-This is a library that adds some NLP capabilities to the Lucene search engine
-library: lemmatization and filtering based on part-of-speech (POS) tag. The
-combination of lemmatizing and POS filtering is intended to replace stemming
-and stop lists.
+This is a library that adds NLP capabilities to Lucene-based search engines:
+lemmatization and filtering based on part-of-speech (POS) tag. It used the
+[state-of-the-art](http://tinyurl.com/pos-tagging) Stanford POS Tagger for
+NLP support.
 
-Lemmatizing is similar to stemming, except smarter: it takes into account the
-context of a word to determine the correct lemma/stem.
+Lemmatizing is similar to stemming, except smarter: it takes into account
+the context of a word to determine the correct lemma/stem. POS filtering is
+a smarter replacement for stop lists. It allows filtering out all pronouns,
+adverbs, etc.
 
-To build, the following packages are required:
+Getting started
+---------------
+Download this package and
 
 * [Lucene 3.x](http://lucene.apache.org/java/)
 * [Stanford POS Tagger](http://nlp.stanford.edu/software/tagger.shtml)
 * [Ant](http://ant.apache.org/)
 * [Guava](http://code.google.com/p/guava-libraries/)
 
-To build, set your CLASSPATH to include all the relevant libraries, then
-issue `ant jar`.
+Set your CLASSPATH to include the above, then issue `ant jar`.
 
-To use this package inside a Lucene-based search engine, construct an
-EnglishLemmaAnalyzer instead of a StandardAnalyzer (or whatever you normally
-use). Pass the filename of a Stanford POS Tagger model file to the
-constructor; model files are usually in the `models/` directory in the
-Stanford POS Tagger source code directory.
+In your search code, construct an EnglishLemmaAnalyzer instead of a
+StandardAnalyzer (or whatever you normally use). Pass the filename of a
+Stanford POS Tagger model file to the constructor (found in the `models/`
+directory in the Stanford POS Tagger source directory.
+
+Going further
+-------------
+It is possible to determine which parts-of-speech should be indexed by
+subclassing the tokenizer. See the
+[API docs](http://larsmans.github.com/lucene-stanford-lemmatizer)
+for details.
+
+Bugs
+----
+The implementation is limited to English, because the Stanford lemmatizer
+only handles that languages. The POS tagger does Chinese and German, so it
+should be possible to add those languages.

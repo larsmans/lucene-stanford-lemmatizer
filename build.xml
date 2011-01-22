@@ -25,7 +25,7 @@
       </fileset>
 
       <link href="http://download.oracle.com/javase/6/docs/api/" />
-      <link href="http://lucene.apache.org/java/3_0_2/api/all/" />
+      <link href="http://lucene.apache.org/java/3_0_3/api/all/" />
       <link href="http://nlp.stanford.edu/nlp/javadoc/javanlp/" />
     </javadoc>
   </target>

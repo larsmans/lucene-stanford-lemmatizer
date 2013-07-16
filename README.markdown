@@ -39,6 +39,10 @@ for details.
 
 Bugs
 ----
+Lucene 4.x support is missing. Please don't email me (Lars) about this;
+I don't have the time to learn the new APIs and fix it.
+If you know a fix, please fork this project and publish your changes.
+
 The implementation is limited to English, because the Stanford lemmatizer
 only handles that languages. The POS tagger does Chinese and German, so it
 should be possible to add those languages.

@@ -63,7 +63,7 @@ public class EnglishLemmaTokenizer extends TokenStream {
         posIncr = addAttribute(PositionIncrementAttribute.class);
         termAtt = addAttribute(TermAttribute.class);
 
-        List<ArrayList<? extends HasWord>> tokenized =
+        List<List<HasWord>> tokenized =
             MaxentTagger.tokenizeText(input);
         tagged = Iterables.concat(tagger.process(tokenized)).iterator();
     }

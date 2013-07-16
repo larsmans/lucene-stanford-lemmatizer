@@ -2,6 +2,9 @@ class/
 javadoc/
 *.jar
 
+*.tgz
+*.zip
+
 # Vim temporaries
 *.swp
 *.swo

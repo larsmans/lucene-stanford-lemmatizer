@@ -11,11 +11,14 @@ the context of a word to determine the correct lemma/stem. POS filtering is
 a smarter replacement for stop lists. It allows filtering out all pronouns,
 adverbs, etc.
 
+For lemmatization and POS tagging to work best, your queries should be English
+sentences instead of just bunches of keywords.
+
 Getting started
 ---------------
 Download this package and
 
-* [Lucene 3.x](http://lucene.apache.org/java/)
+* [Lucene 3.x](http://lucene.apache.org/core/)
 * [Stanford POS Tagger](http://nlp.stanford.edu/software/tagger.shtml)
 * [Ant](http://ant.apache.org/)
 * [Guava](http://code.google.com/p/guava-libraries/)
